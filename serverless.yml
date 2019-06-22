@@ -1,0 +1,23 @@
+service: aws-nodejs # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  environment: 
+    SLACK_URL: "https://hooks.slack.com/services/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"
+
+
+functions:
+  app: 
+    handler: handler.app
+    events:
+      - http:
+          path: app/get
+          method: get
+  githubpushnotification:
+    handler: handler.githubpushnotification
+    events:
+      - http: 
+          path: cdltpush
+          method: post
+
